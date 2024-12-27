@@ -4,10 +4,12 @@ package kotlinx.coroutines.guide.exampleBasic06
 import kotlinx.coroutines.*
 
 fun main() = runBlocking {
+    var time1= System.currentTimeMillis()
+    println("start time ${currentTimeMillis()-time1}")
     repeat(50_000) { // launch a lot of coroutines
         launch {
             delay(5000L)
-            print(".")
+            print(".   ${currentTimeMillis()-time1}")
         }
     }
 }

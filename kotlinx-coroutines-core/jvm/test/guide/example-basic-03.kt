@@ -4,13 +4,16 @@ package kotlinx.coroutines.guide.exampleBasic03
 import kotlinx.coroutines.*
 
 fun main() = runBlocking {
-    doWorld()
+    var time1= System.currentTimeMillis()
+    println("start time ${currentTimeMillis()-time1}")
+    doWorld(time1)
+    println("end time ${currentTimeMillis()-time1}")
 }
 
-suspend fun doWorld() = coroutineScope {  // this: CoroutineScope
+suspend fun doWorld(time1:Long) = coroutineScope {  // this: CoroutineScope
     launch {
         delay(1000L)
-        println("World!")
+        println("World! ${currentTimeMillis()-time1}")
     }
-    println("Hello")
+    println("Hello  ${currentTimeMillis()-time1}")
 }
