@@ -5,12 +5,12 @@ import kotlinx.coroutines.*
 
 fun main() = runBlocking {
     var time1= System.currentTimeMillis()
-    println("start time ${currentTimeMillis()-time1}")
+    println("start time ${currentTimeMillis()-time1}   ${Thread.currentThread().name}")
     val job = launch { // launch a new coroutine and keep a reference to its Job
         delay(1000L)
-        println("World!     ${currentTimeMillis()-time1}")
+        println("World!     ${currentTimeMillis()-time1}   ${Thread.currentThread().name}")
     }
-    println("Hello   ${currentTimeMillis()-time1}")
+    println("Hello   ${currentTimeMillis()-time1}   ${Thread.currentThread().name}")
     job.join() // wait until child coroutine completes
-    println("Done   ${currentTimeMillis()-time1}")
+    println("Done   ${currentTimeMillis()-time1}   ${Thread.currentThread().name}")
 }

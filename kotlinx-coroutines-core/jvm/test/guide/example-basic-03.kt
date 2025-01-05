@@ -5,15 +5,15 @@ import kotlinx.coroutines.*
 
 fun main() = runBlocking {
     var time1= System.currentTimeMillis()
-    println("start time ${currentTimeMillis()-time1}")
+    println("start time ${currentTimeMillis()-time1}   ${Thread.currentThread().name}")
     doWorld(time1)
-    println("end time ${currentTimeMillis()-time1}")
+    println("end time ${currentTimeMillis()-time1}  ${Thread.currentThread().name}")
 }
 
 suspend fun doWorld(time1:Long) = coroutineScope {  // this: CoroutineScope
     launch {
         delay(1000L)
-        println("World! ${currentTimeMillis()-time1}")
+        println("World! ${currentTimeMillis()-time1}   ${Thread.currentThread().name}")
     }
-    println("Hello  ${currentTimeMillis()-time1}")
+    println("Hello  ${currentTimeMillis()-time1}   ${Thread.currentThread().name}")
 }

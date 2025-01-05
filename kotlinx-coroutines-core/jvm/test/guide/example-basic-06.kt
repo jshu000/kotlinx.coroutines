@@ -5,11 +5,13 @@ import kotlinx.coroutines.*
 
 fun main() = runBlocking {
     var time1= System.currentTimeMillis()
-    println("start time ${currentTimeMillis()-time1}")
+    println("start time ${currentTimeMillis()-time1}   ${Thread.currentThread().name}")
+    var i=0
     repeat(50_000) { // launch a lot of coroutines
         launch {
             delay(5000L)
-            print(".   ${currentTimeMillis()-time1}")
+            println(". $i  ${currentTimeMillis()-time1}   ${Thread.currentThread().name}")
+            i++
         }
     }
 }

@@ -4,11 +4,13 @@ package kotlinx.coroutines.guide.exampleCancel03
 import kotlinx.coroutines.*
 
 fun main() = runBlocking {
+    var time1= System.currentTimeMillis()
+    println("start time -${System.currentTimeMillis()-time1}")
     val job = launch(Dispatchers.Default) {
         repeat(5) { i ->
             try {
                 // print a message twice a second
-                println("job: I'm sleeping $i ...")
+                println("job: I'm sleeping $i ... time -${System.currentTimeMillis()-time1}")
                 delay(500)
             } catch (e: Exception) {
                 // log the exception
@@ -17,7 +19,7 @@ fun main() = runBlocking {
         }
     }
     delay(1300L) // delay a bit
-    println("main: I'm tired of waiting!")
+    println("main: I'm tired of waiting!  time -${System.currentTimeMillis()-time1}")
     job.cancelAndJoin() // cancels the job and waits for its completion
-    println("main: Now I can quit.")
+    println("main: Now I can quit.  time -${System.currentTimeMillis()-time1}")
 }
